@@ -1,0 +1,14 @@
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+spring:
+  application:
+    name: feign-consumer
+feign:
+  hystrix:
+    enabled: true
