@@ -16,16 +16,18 @@ public class HelloServiceImpl implements HelloService {
     @Autowired
     private RestTemplate restTemplate;
 
+    private static final String HELLO_SERVICE_PREFIX = "http://hello-service/";
+    private static final String ERROR="error";
     /*指定失败回调函数*/
     @HystrixCommand(fallbackMethod = "helloFallback", ignoreExceptions = {HystrixBadRequestException.class})
     @Override
     public String hello(String name) {
-        return restTemplate.getForObject("http://hello-service/hello-provider/{0}", String.class, name);
+        return restTemplate.getForObject(HELLO_SERVICE_PREFIX + "hello-provider/{0}", String.class, name);
 
     }
 
     @Override
     public String helloFallback(String name, Throwable throwable) {
-        return "error" + name;
+        return ERROR + name;
     }
 }

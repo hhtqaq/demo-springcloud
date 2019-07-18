@@ -1,0 +1,17 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: api-gateway
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: hello-service  #这样就会把api-a下的所有请求都去找hello-service
+    api-b:
+      path: /api-b/**
+      serviceId: feign-consumer
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
