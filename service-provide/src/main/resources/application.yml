@@ -1,11 +1,12 @@
 server:
   port: 8082
 eureka:
-  instance:
-    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:1111/eureka/
+  instance:
+    instance-id: hello-service-${server.port}
+    prefer-ip-address: true
 spring:
   application:
-   name: hello-service
+    name: hello-service
